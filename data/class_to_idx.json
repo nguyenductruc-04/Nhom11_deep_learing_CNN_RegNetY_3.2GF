@@ -1,0 +1,6 @@
+{
+    "none": 0,
+    "smoke": 1,
+    "fire": 2,
+    "smoke_fire": 3
+}

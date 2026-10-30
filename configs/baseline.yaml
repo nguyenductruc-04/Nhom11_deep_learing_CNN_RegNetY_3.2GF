@@ -1,0 +1,75 @@
+project:
+  name: D-Fire_4Class_CNN
+  task: image_classification
+  num_classes: 4
+
+classes:
+  - none
+  - smoke
+  - fire
+  - smoke_fire
+
+data:
+  image_size: 224
+  batch_size: 16
+  num_workers: 0
+  split_seed: 42
+  train_manifest: manifests/train.csv
+  val_manifest: manifests/val.csv
+  test_manifest: manifests/test.csv
+
+augmentation:
+  random_horizontal_flip: 0.5
+  random_rotation: 10
+  color_jitter:
+    brightness: 0.10
+    contrast: 0.10
+    saturation: 0.10
+    hue: 0.02
+
+normalization:
+  mean:
+    - 0.485
+    - 0.456
+    - 0.406
+  std:
+    - 0.229
+    - 0.224
+    - 0.225
+
+model:
+  name: CustomCNN
+  conv_blocks: 4
+  channels:
+    - 32
+    - 64
+    - 128
+    - 256
+  kernel_size: 3
+  embedding_dim: 128
+  dropout: 0.30
+  trainable_parameters: 422788
+
+training:
+  optimizer: AdamW
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  max_epochs: 30
+  early_stopping_patience: 7
+  loss_function: CrossEntropyLoss
+  checkpoint_metric: val_loss
+
+checkpoint:
+  best_model: outputs/best_model.pt
+  history: outputs/history.csv
+
+best_result:
+  epoch: 30
+  val_loss: 0.4588
+  val_accuracy: 0.8216
+
+test_result:
+  accuracy: 0.8228
+  macro_precision: 0.7853
+  macro_recall: 0.7473
+  macro_f1: 0.7608
