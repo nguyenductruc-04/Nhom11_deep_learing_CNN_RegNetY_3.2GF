@@ -49,7 +49,7 @@ Bảng chi tiết nằm trong `outputs/`, hình (ma trận nhầm lẫn, đườ
 
 ## 5. Cách chạy
 
-Yêu cầu Python 3.12 và GPU NVIDIA (đã thử trên RTX 4060 Laptop).
+Yêu cầu Python 3.12
 
 ```bash
 python -m venv .venv312
